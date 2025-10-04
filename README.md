@@ -1,17 +1,18 @@
-# 📚 NLP Breakdown - Learning Natural Language Processing
+# 📚 NLP Toolkit - Natural Language Processing Tools Collection
 
-Welcome to my **Natural Language Processing (NLP) Learning Journey**! This project is designed to understand and compare different NLP techniques and libraries through hands-on experimentation.
+Welcome to my **Natural Language Processing (NLP) Toolkit**! This collection includes practical NLP tools for text analysis, keyword extraction, and semantic similarity analysis through hands-on implementations.
 
-## 🎯 Learning Objectives
+## 🎯 Tools & Features
 
-This project helps me understand:
+This toolkit includes:
 
-- **Text Preprocessing** techniques
+- **Text Preprocessing** and analysis techniques
+- **TF-IDF Keyword Analysis** for document importance ranking
+- **Word Embeddings & Similarity** using pre-trained models
+- **Synonym Finding** with semantic word vectors
 - **Tokenization** methods (sentence and word level)
 - **Stop word removal** for text cleaning
-- **Stemming vs Lemmatization** differences
-- **Part-of-Speech (POS) tagging**
-- **SpaCy vs NLTK** library comparisons
+- **Stemming vs Lemmatization** comparisons
 
 ## 🛠️ Technologies Used
 
@@ -19,20 +20,27 @@ This project helps me understand:
 
 - **SpaCy** - Advanced NLP library with pre-trained models
 - **NLTK** - Natural Language Toolkit for text processing
-- **Python 3.13+** - Programming language
+- **Gensim** - Topic modeling and word embeddings library
+- **Python 3.12+** - Programming language (3.12 recommended for gensim compatibility)
 
 ### Models & Data
 
 - **en_core_web_sm** - SpaCy's English language model
+- **glove-wiki-gigaword-100** - 128MB GloVe word embeddings for synonym finding
 - **NLTK Corpora** - stopwords, wordnet, punkt tokenizers
 
 ## 📋 Prerequisites
 
-Make sure you have the following installed:
+### For Python 3.12 (Recommended for full compatibility):
 
 ```bash
+# Create virtual environment with Python 3.12
+python3.12 -m venv nlp_env
+# On Windows: .\nlp_env\Scripts\Activate.ps1
+# On macOS/Linux: source nlp_env/bin/activate
+
 # Install Python packages
-pip install spacy nltk
+pip install spacy nltk gensim
 
 # Download SpaCy English model
 python -m spacy download en_core_web_sm
@@ -41,13 +49,66 @@ python -m spacy download en_core_web_sm
 python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('stopwords'); nltk.download('wordnet')"
 ```
 
+### For Python 3.13:
+
+```bash
+# Only basic tools work (gensim may have compatibility issues)
+pip install spacy nltk
+python -m spacy download en_core_web_sm
+```
+
 ## 🚀 Usage
 
-Run the script and enter your text for analysis:
+### Available Tools
+
+#### 1. **Text Analysis & Comparison** (`nlp_breakdown.py`)
+
+Compare SpaCy vs NLTK processing methods:
 
 ```bash
 python nlp_breakdown.py
 ```
+
+#### 2. **TF-IDF Keyword Analysis** (`keyWord_analyze.py`)
+
+Analyze keyword importance across multiple documents:
+
+```bash
+python keyWord_analyze.py
+```
+
+#### 3. **Synonym Finder** (`gensim-syn.py`)
+
+Find semantically similar words using word embeddings:
+
+```bash
+python gensim-syn.py
+```
+
+## 🔧 Tool Descriptions
+
+### 1. **nlp_breakdown.py** - Text Analysis Foundation
+
+- **SpaCy vs NLTK comparison** for preprocessing
+- **Lemmatization vs Stemming** analysis
+- **POS tagging** and linguistic features
+- **Stop word filtering** and tokenization
+
+### 2. **keyWord_analyze.py** - TF-IDF Keyword Extraction
+
+- **TF-IDF analysis** across multiple documents
+- **Keyword importance ranking**
+- **Document similarity comparison**
+- **Stop word removal** with spaCy
+- Processes multiple text documents to find the most significant terms
+
+### 3. **gensim-syn.py** - Semantic Similarity & Synonyms
+
+- **Word embeddings** using GloVe vectors (128MB model)
+- **Synonym finding** with semantic similarity scores
+- **Filtered results** (removes contractions and non-words)
+- **Real-time word similarity** analysis
+- Uses `glove-wiki-gigaword-100` for balanced performance
 
 ### Example Input
 
@@ -86,7 +147,28 @@ The children were running quickly through the beautiful gardens. They stopped to
 | **Context**  | Rule-based            | Grammar-aware     |
 | **Use Case** | Search engines        | Text analysis     |
 
-### Example Comparisons
+### Example Tool Outputs
+
+#### TF-IDF Keyword Analysis
+
+```
+Document 1 TF-IDF scores:
+  gardens: 0.4521
+  flowers: 0.3876
+  children: 0.3241
+```
+
+#### Synonym Finder Results
+
+```
+Enter your word: happy
+The synonyms of 'happy' are:
+  glad: 0.7833
+  good: 0.7822
+  proud: 0.7702
+```
+
+#### Text Processing Comparisons
 
 - `running` → Stem: `run` vs Lemma: `running`
 - `children` → Stem: `children` vs Lemma: `child`
@@ -138,6 +220,9 @@ word -> lemmatized_form
 - [x] Lemmatization comparison
 - [x] SpaCy integration
 - [x] POS tagging understanding
+- [x] **TF-IDF keyword analysis** - _Completed_
+- [x] **Word embeddings & similarity** - _Completed_
+- [x] **Synonym finding with gensim** - _Completed_
 - [ ] Named Entity Recognition (NER) - _Next goal_
 - [ ] Text classification - _Future learning_
 - [ ] Sentiment analysis - _Planned_
@@ -155,12 +240,14 @@ This project is part of my journey to understand:
 
 ### Potential Enhancements
 
-- Add **Named Entity Recognition**
-- Include **dependency parsing**
-- Implement **text similarity metrics**
-- Add **n-gram analysis**
-- Create **word frequency distributions**
-- Include **sentiment analysis**
+- Add **Named Entity Recognition** to existing tools
+- Include **dependency parsing** visualization
+- Implement **document clustering** with TF-IDF
+- Add **n-gram analysis** for phrase detection
+- Create **interactive word similarity** exploration
+- Include **sentiment analysis** pipeline
+- Add **text classification** capabilities
+- Implement **topic modeling** with LDA
 
 ### Learning Resources Referenced
 
