@@ -100,8 +100,19 @@ doc = [
 print(len(doc))
 entire_doc = "\n".join(doc)
 words = entire_doc.lower().split()
-stop_words = ['your', 'you', 'a', 'for', "'s", 'to', 'and', 'that', 'the', 'in', 'of', 'he', 'brian', 'what', 'are', 'in', 'this', 'as', 'is', 'with']
-words = [word for word in words if word not in stop_words]
+
+
+# using nltk tokenization and stop word removal
+# stop_words = ['your', 'you', 'a', 'for', "'s", 'to', 'and', 'that', 'the', 'in', 'of', 'he', 'brian', 'what', 'are', 'in', 'this', 'as', 'is', 'with']
+# words = [word for word in words if word not in stop_words]
+
+
+# using spacy for tokenization and stop word removal
+import spacy
+nlp = spacy.load("en_core_web_sm")
+stop_words = set(nlp.Defaults.stop_words)
+words = [w for w in words if w not in stop_words and w.isalpha()]
+
 
 words_c = Counter(words)
 my_words = ['life', 'goals', 'determine', 'encourages', 'develop', 'choices', 'success', 'special', 'need', 'important', 'create', 'mind', 'power']
@@ -111,4 +122,4 @@ for para in doc:
     lower_para = para.lower()
     for word in my_words:
         print(word, "-", lower_para.count(word))
-    sys.stdout.flush()  # Only keep this for VS Code compatibility
+    sys.stdout.flush()  
